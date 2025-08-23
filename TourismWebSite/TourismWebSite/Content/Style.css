@@ -1,4 +1,7 @@
-﻿body {
+﻿@import "tailwindcss";
+
+
+body {
 }
 
 .TableStyle {
