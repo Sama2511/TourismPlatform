@@ -29,6 +29,8 @@ namespace TourismWebSite.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Tours> Tours { get; set; }
+
 
     }
 }

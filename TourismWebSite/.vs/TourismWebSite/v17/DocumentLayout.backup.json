@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|c:\\users\\hasso\\source\\repos\\tourismplatform\\tourismwebsite\\tourismwebsite\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|solutionrelative:tourismwebsite\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|c:\\users\\hasso\\source\\repos\\tourismplatform\\tourismwebsite\\tourismwebsite\\migrations\\202508241512284_createtours.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|solutionrelative:tourismwebsite\\migrations\\202508241512284_createtours.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|c:\\users\\hasso\\source\\repos\\tourismplatform\\tourismwebsite\\tourismwebsite\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|solutionrelative:tourismwebsite\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|c:\\users\\hasso\\source\\repos\\tourismplatform\\tourismwebsite\\tourismwebsite\\controllers\\tourscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|solutionrelative:tourismwebsite\\controllers\\tourscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|c:\\users\\hasso\\source\\repos\\tourismplatform\\tourismwebsite\\tourismwebsite\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|solutionrelative:tourismwebsite\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|c:\\users\\hasso\\source\\repos\\tourismplatform\\tourismwebsite\\tourismwebsite\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|solutionrelative:tourismwebsite\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|c:\\users\\hasso\\source\\repos\\tourismplatform\\tourismwebsite\\tourismwebsite\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|solutionrelative:tourismwebsite\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|c:\\users\\hasso\\source\\repos\\tourismplatform\\tourismwebsite\\tourismwebsite\\controllers\\packagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|solutionrelative:tourismwebsite\\controllers\\packagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|c:\\users\\hasso\\source\\repos\\tourismplatform\\tourismwebsite\\tourismwebsite\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|solutionrelative:tourismwebsite\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|c:\\users\\hasso\\source\\repos\\tourismplatform\\tourismwebsite\\tourismwebsite\\migrations\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|solutionrelative:tourismwebsite\\migrations\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|c:\\users\\hasso\\source\\repos\\tourismplatform\\tourismwebsite\\tourismwebsite\\models\\identitymodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2915BE72-DF76-4B43-B491-D2FBB40BA0D9}|TourismWebSite\\TourismWebSite.csproj|solutionrelative:tourismwebsite\\models\\identitymodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +34,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "About.cshtml",
-              "DocumentMoniker": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Views\\Home\\About.cshtml",
-              "RelativeDocumentMoniker": "TourismWebSite\\Views\\Home\\About.cshtml",
-              "ToolTip": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Views\\Home\\About.cshtml",
-              "RelativeToolTip": "TourismWebSite\\Views\\Home\\About.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-24T03:27:24.448Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Contact.cshtml",
-              "DocumentMoniker": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Views\\Home\\Contact.cshtml",
-              "RelativeDocumentMoniker": "TourismWebSite\\Views\\Home\\Contact.cshtml",
-              "ToolTip": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Views\\Home\\Contact.cshtml",
-              "RelativeToolTip": "TourismWebSite\\Views\\Home\\Contact.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-24T03:27:23.9Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_LoginPartial.cshtml",
-              "DocumentMoniker": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Views\\Shared\\_LoginPartial.cshtml",
-              "RelativeDocumentMoniker": "TourismWebSite\\Views\\Shared\\_LoginPartial.cshtml",
-              "ToolTip": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Views\\Shared\\_LoginPartial.cshtml",
-              "RelativeToolTip": "TourismWebSite\\Views\\Shared\\_LoginPartial.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-24T03:23:27.823Z",
+              "DocumentIndex": 0,
+              "Title": "202508241512284_CreateTours.cs",
+              "DocumentMoniker": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Migrations\\202508241512284_CreateTours.cs",
+              "RelativeDocumentMoniker": "TourismWebSite\\Migrations\\202508241512284_CreateTours.cs",
+              "ToolTip": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Migrations\\202508241512284_CreateTours.cs",
+              "RelativeToolTip": "TourismWebSite\\Migrations\\202508241512284_CreateTours.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-24T15:12:33.327Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "TourismWebSite\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "TourismWebSite\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAkwAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-24T02:42:10.292Z",
+              "Title": "Configuration.cs",
+              "DocumentMoniker": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Migrations\\Configuration.cs",
+              "RelativeDocumentMoniker": "TourismWebSite\\Migrations\\Configuration.cs",
+              "ToolTip": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Migrations\\Configuration.cs",
+              "RelativeToolTip": "TourismWebSite\\Migrations\\Configuration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-24T15:12:14.84Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "TourismWebSite\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "TourismWebSite\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-23T00:49:49.708Z",
+              "DocumentIndex": 3,
+              "Title": "PackagesController.cs",
+              "DocumentMoniker": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Controllers\\PackagesController.cs",
+              "RelativeDocumentMoniker": "TourismWebSite\\Controllers\\PackagesController.cs",
+              "ToolTip": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Controllers\\PackagesController.cs",
+              "RelativeToolTip": "TourismWebSite\\Controllers\\PackagesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-24T15:11:06.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ToursController.cs",
+              "DocumentMoniker": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Controllers\\ToursController.cs",
+              "RelativeDocumentMoniker": "TourismWebSite\\Controllers\\ToursController.cs",
+              "ToolTip": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Controllers\\ToursController.cs",
+              "RelativeToolTip": "TourismWebSite\\Controllers\\ToursController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-24T15:11:04.39Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Web.config",
+              "RelativeDocumentMoniker": "TourismWebSite\\Web.config",
+              "ToolTip": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Web.config",
+              "RelativeToolTip": "TourismWebSite\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-08-24T15:08:42.584Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IdentityModels.cs",
+              "DocumentMoniker": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Models\\IdentityModels.cs",
+              "RelativeDocumentMoniker": "TourismWebSite\\Models\\IdentityModels.cs",
+              "ToolTip": "C:\\Users\\hasso\\source\\repos\\TourismPlatform\\TourismWebSite\\TourismWebSite\\Models\\IdentityModels.cs",
+              "RelativeToolTip": "TourismWebSite\\Models\\IdentityModels.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-24T14:57:52.473Z",
               "EditorCaption": ""
             }
           ]

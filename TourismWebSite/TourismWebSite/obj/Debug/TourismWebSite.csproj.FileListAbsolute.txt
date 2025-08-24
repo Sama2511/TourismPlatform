@@ -77,6 +77,8 @@ C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\Sy
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\System.Web.WebPages.dll
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\System.Web.WebPages.Razor.dll
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\WebGrease.dll
+C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\EntityFramework.xml
+C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\EntityFramework.SqlServer.xml
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\System.Web.Helpers.xml
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\System.Web.Mvc.xml
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\System.Web.Optimization.xml
@@ -86,8 +88,6 @@ C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\Sy
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\System.Web.WebPages.Razor.xml
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\Newtonsoft.Json.xml
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\Antlr3.Runtime.pdb
-C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\EntityFramework.xml
-C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\EntityFramework.SqlServer.xml
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\bin\Microsoft.AspNet.Identity.EntityFramework.xml
@@ -106,3 +106,5 @@ C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\obj\De
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismW.5FE2CF2D.Up2Date
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.dll
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.pdb
+C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.CreateTours.resources
+C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.csproj.GenerateResource.cache
