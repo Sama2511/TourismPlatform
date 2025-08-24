@@ -29,5 +29,6 @@ namespace TourismWebSite.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }

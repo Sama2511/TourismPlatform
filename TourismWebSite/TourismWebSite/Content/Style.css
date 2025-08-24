@@ -1,6 +1,7 @@
 ﻿@import "tailwindcss";
 
-
+@tailwind components;
+@tailwind utilities;
 body {
 }
 
