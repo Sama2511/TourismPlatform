@@ -6,29 +6,51 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Voyage", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light py-4 bg-light border-bottom shadow-sm">
+        <div class="container-fluid">
+
+            @Html.ActionLink("Voyage", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fw-semibold" })
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#nav_lc"
+                    aria-controls="nav_lc" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    @*<li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
-                    <li>@Html.ActionLink("Bookings", "Index", "Bookings", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Tours", "Index", "Tours", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Packages", "Index", "Packages", new { area = "" }, new { @class = "nav-link" })</li>
+
+            <div class="collapse navbar-collapse" id="nav_lc">
+                <ul class="navbar-nav my-3 my-lg-0 ms-lg-3 me-auto">
+                    <li class="nav-item me-4">
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item me-4">
+                        @Html.ActionLink("Tours", "Index", "Tours", null, new { @class = "nav-link" })
+                    </li>
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item me-4">
+                            @Html.ActionLink("Bookings", "Index", "Bookings", null, new { @class = "nav-link" })
+                        </li>
+                    }
+
+                    @if (Request.IsAuthenticated && User.IsInRole("Agency"))
+                    {
+                        <li class="nav-item me-4">
+                            @Html.ActionLink("Packages", "Index", "Packages", null, new { @class = "nav-link" })
+                        </li>
+                        
+                    }
                 </ul>
-                 @Html.Partial("_LoginPartial")
+
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -42,3 +64,6 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+
+

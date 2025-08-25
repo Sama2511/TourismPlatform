@@ -108,3 +108,4 @@ C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\obj\De
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.pdb
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.CreateTours.resources
 C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.csproj.GenerateResource.cache
+C:\Users\hasso\source\repos\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.AddFullNameToAspNetUsers.resources

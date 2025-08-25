@@ -6,14 +6,20 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TourismWebSite.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    // You can add profile data for the user by adding more properties to your ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
+        // NEW: store the user's full name
+        public string FullName { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
+
+            // NEW: add FullName into the auth cookie (so views can read it without DB calls)
+            userIdentity.AddClaim(new Claim("FullName", this.FullName ?? this.Email));
+
             return userIdentity;
         }
     }
@@ -29,8 +35,7 @@ namespace TourismWebSite.Models
         {
             return new ApplicationDbContext();
         }
+
         public DbSet<Tours> Tours { get; set; }
-
-
     }
 }

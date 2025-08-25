@@ -1,22 +1,46 @@
 ﻿@using Microsoft.AspNet.Identity
+@using System.Security.Claims
+
+@{
+    // Prefer the FullName claim we added; fall back to username/email
+    var fullName = (User as ClaimsPrincipal)?.FindFirst("FullName")?.Value
+                   ?? User.Identity.GetUserName();
+}
+
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-flex ms-auto" }))
     {
-    @Html.AntiForgeryToken()
-
-    <ul class="navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="nav-link" })
-        </li>
-        <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        @Html.AntiForgeryToken()
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                @Html.ActionLink("Hello " + fullName + "!", "Index", "Manage", null,
+                    new { title = "Manage", @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                <button type="submit" class="nav-link btn btn-link p-0">Log off</button>
+            </li>
+        </ul>
     }
 }
 else
 {
-    <ul class="navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class="nav-link" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class="nav-link" })</li>
+    <ul class="navbar-nav ms-auto gap-2">
+        <li class="btn btn-primary">
+            @Html.ActionLink("Sign Up", "Register", "Account", null,
+                new { id = "registerLink", @class = "nav-link" })
+        </li>
+        <li class="btn btn-outline-secondary me-2">
+            @Html.ActionLink("Log in", "Login", "Account", null,
+                new { id = "loginLink", @class = "nav-link" })
+        </li>
     </ul>
 }
+
+
+
+
+  
+   
+ 
+  

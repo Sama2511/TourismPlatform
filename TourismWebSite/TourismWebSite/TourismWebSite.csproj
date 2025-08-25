@@ -176,6 +176,10 @@
     <Compile Include="Migrations\202508241512284_CreateTours.Designer.cs">
       <DependentUpon>202508241512284_CreateTours.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202508250545407_AddFullNameToAspNetUsers.cs" />
+    <Compile Include="Migrations\202508250545407_AddFullNameToAspNetUsers.Designer.cs">
+      <DependentUpon>202508250545407_AddFullNameToAspNetUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -300,6 +304,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202508241512284_CreateTours.resx">
       <DependentUpon>202508241512284_CreateTours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508250545407_AddFullNameToAspNetUsers.resx">
+      <DependentUpon>202508250545407_AddFullNameToAspNetUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
