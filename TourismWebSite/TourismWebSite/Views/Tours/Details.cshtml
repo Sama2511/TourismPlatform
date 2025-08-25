@@ -1,0 +1,19 @@
+﻿@model TourismWebSite.Models.Tours
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<h1 class="h3 mb-3">@Model.Name</h1>
+<p class="text-muted">@Model.Destination</p>
+
+
+<p>@Model.Description</p>
+
+<ul class="list-unstyled border rounded p-3">
+    <li><strong>Price:</strong> @Model.Price.ToString("C")</li>
+    <li><strong>Duration:</strong> @Model.DurationDays day(s)</li>
+    <li><strong>Start:</strong> @Model.StartDate.ToString("yyyy-MM-dd")</li>
+    <li><strong>End:</strong> @Model.EndDate.ToString("yyyy-MM-dd")</li>
+</ul>
+
+<a class="btn btn-primary" href="@Url.Action("Create","Bookings", new { tourId = Model.Id })">Book this tour</a>

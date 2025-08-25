@@ -264,6 +264,7 @@
     <Content Include="Views\Packages\Delete.cshtml" />
     <Content Include="Views\Packages\Details.cshtml" />
     <Content Include="Views\Packages\Edit.cshtml" />
+    <Content Include="Views\Tours\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

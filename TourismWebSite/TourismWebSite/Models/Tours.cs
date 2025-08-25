@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace TourismWebSite.Models
+ namespace TourismWebSite.Models
 {
     public class Tours
     {
