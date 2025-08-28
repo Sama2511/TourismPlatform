@@ -37,7 +37,7 @@
                         </li>
                     }
 
-                    @if (Request.IsAuthenticated && User.IsInRole("Agency"))
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li class="nav-item me-4">
                             @Html.ActionLink("Packages", "Index", "Packages", null, new { @class = "nav-link" })

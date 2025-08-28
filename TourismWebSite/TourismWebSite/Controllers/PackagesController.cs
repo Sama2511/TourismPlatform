@@ -10,6 +10,8 @@ using TourismWebSite.Models;
 
 namespace TourismWebSite.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class PackagesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
