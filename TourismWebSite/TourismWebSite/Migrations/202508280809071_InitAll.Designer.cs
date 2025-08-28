@@ -7,13 +7,13 @@ namespace TourismWebSite.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddFullNameToAspNetUsers : IMigrationMetadata
+    public sealed partial class InitAll : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFullNameToAspNetUsers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitAll));
         
         string IMigrationMetadata.Id
         {
-            get { return "202508250545407_AddFullNameToAspNetUsers"; }
+            get { return "202508280809071_InitAll"; }
         }
         
         string IMigrationMetadata.Source
