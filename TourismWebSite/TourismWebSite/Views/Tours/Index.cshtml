@@ -15,8 +15,11 @@
                     <div class="text-muted small mb-2">
                         @t.DurationDays day(s) • @t.Destination
                     </div>
-                    <div class="fw-semibold mb-2">@t.Price.ToString("C")</div>
-                    <a class="btn btn-outline-primary mt-auto" href="@Url.Action("Details","Tours", new { id = t.Id })">Details</a>
+                    <div class="fw-semibold mb-2 flex">@t.Price.ToString("C")</div>
+                    <div>
+                        <a class="btn btn-primary">Book</a>
+                        <a class="btn btn-outline-primary mt-auto" href="@Url.Action("Details","Tours", new { id = t.Id })">Details</a>
+                    </div>
                 </div>
             </div>
         </div>
