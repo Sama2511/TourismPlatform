@@ -176,8 +176,13 @@
     <Compile Include="Migrations\202508280809071_InitAll.Designer.cs">
       <DependentUpon>202508280809071_InitAll.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202509011232063_AddBookingsTable.cs" />
+    <Compile Include="Migrations\202509011232063_AddBookingsTable.Designer.cs">
+      <DependentUpon>202509011232063_AddBookingsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Tours.cs" />
@@ -300,6 +305,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202508280809071_InitAll.resx">
       <DependentUpon>202508280809071_InitAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509011232063_AddBookingsTable.resx">
+      <DependentUpon>202509011232063_AddBookingsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

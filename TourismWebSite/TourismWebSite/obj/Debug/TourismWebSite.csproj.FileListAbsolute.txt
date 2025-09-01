@@ -219,3 +219,4 @@ C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismW
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.pdb
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.InitAll.resources
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.csproj.GenerateResource.cache
+C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.AddBookingsTable.resources

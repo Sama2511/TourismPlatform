@@ -1,7 +1,47 @@
-﻿
+﻿@model IEnumerable<TourismWebSite.Models.Booking>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My Bookings";
 }
 
-<h2>Index</h2>
+<h2>My Bookings</h2>
 
+@if (!Model.Any())
+{
+    <p>You haven’t booked any tours yet.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tour</th>
+                <th>Destination</th>
+                <th>Dates</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var b in Model)
+            {
+                var hasTour = b.Tour != null;
+                <tr>
+                    <td>@(hasTour ? b.Tour.Name : "")</td>
+                    <td>@(hasTour ? b.Tour.Destination : "")</td>
+                    <td>
+                        @(hasTour ? b.Tour.StartDate.ToShortDateString() : "")
+                        @(hasTour ? " – " + b.Tour.EndDate.ToShortDateString() : "")
+                    </td>
+                    <td class="text-end">@(hasTour ? b.Tour.Price.ToString("C") : "")</td>
+                    <td class="text-end">
+                        @using (Html.BeginForm("Delete", "Bookings", FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id", b.BookingId)
+                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

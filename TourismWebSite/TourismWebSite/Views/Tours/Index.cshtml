@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<TourismWebSite.Models.Tours>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tours";
 }
 
-<h2>Render Tours Here</h2>
+<h2 class="mb-3">Available Tours</h2>
 
 <div class="row g-3">
     @foreach (var t in Model)
@@ -12,13 +12,44 @@
             <div class="card h-100">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title mb-1">@t.Name</h5>
+
                     <div class="text-muted small mb-2">
                         @t.DurationDays day(s) • @t.Destination
                     </div>
-                    <div class="fw-semibold mb-2 flex">@t.Price.ToString("C")</div>
-                    <div>
-                        <a class="btn btn-primary">Book</a>
-                        <a class="btn btn-outline-primary mt-auto" href="@Url.Action("Details","Tours", new { id = t.Id })">Details</a>
+
+                    @* optional: trim long text for uniform cards *@
+                    <p class="mb-2 flex-grow-0">
+                        @((t.Description ?? "").Length > 120 ? (t.Description.Substring(0, 120) + "…") : t.Description)
+                    </p>
+
+                    <div class="small text-muted mb-2">
+                        @t.StartDate.ToShortDateString() – @t.EndDate.ToShortDateString()
+                    </div>
+
+                    <div class="fw-semibold mb-3">@t.Price.ToString("C")</div>
+
+                    <div class="mt-auto d-flex gap-2">
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("Create", "Bookings", FormMethod.Post, new { @class = "d-inline" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("id", t.Id) @* TourId *@
+                                <button type="submit" class="btn btn-primary">Book</button>
+                            }
+                        }
+                        else
+                        {
+                            <a class="btn btn-primary"
+                               href="@Url.Action("Login", "Account", new { ReturnUrl = Url.Action("Index","Tours") })">
+                                Log in to book
+                            </a>
+                        }
+
+                        <a class="btn btn-outline-primary"
+                           href="@Url.Action("Details","Tours", new { id = t.Id })">
+                            Details
+                        </a>
                     </div>
                 </div>
             </div>

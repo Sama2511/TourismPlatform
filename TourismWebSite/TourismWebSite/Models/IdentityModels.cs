@@ -35,6 +35,7 @@ namespace TourismWebSite.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Booking> Bookings { get; set; }
 
         public DbSet<Tours> Tours { get; set; }
     }
