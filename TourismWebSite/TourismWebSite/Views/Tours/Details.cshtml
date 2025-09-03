@@ -1,19 +1,75 @@
 ﻿@model TourismWebSite.Models.Tours
+@using TourismWebSite.Models
 @{
     ViewBag.Title = Model.Name;
+
+    // data passed from controller
+    var reviews = ViewBag.Reviews as IEnumerable<Review> ?? Enumerable.Empty<Review>();
+    double? avg = ViewBag.AvgRating as double?;
+    int? reviewBookingId = ViewBag.ReviewBookingId as int?;
 }
 
-<h1 class="h3 mb-3">@Model.Name</h1>
-<p class="text-muted">@Model.Destination</p>
+<h1 class="h3 mb-2">@Model.Name</h1>
+<p class="text-muted mb-3">@Model.Destination • @Model.DurationDays day(s)</p>
 
+<p class="mb-3">@Model.Description</p>
 
-<p>@Model.Description</p>
-
-<ul class="list-unstyled border rounded p-3">
+<ul class="list-unstyled border rounded p-3 mb-3">
     <li><strong>Price:</strong> @Model.Price.ToString("C")</li>
-    <li><strong>Duration:</strong> @Model.DurationDays day(s)</li>
-    <li><strong>Start:</strong> @Model.StartDate.ToString("yyyy-MM-dd")</li>
-    <li><strong>End:</strong> @Model.EndDate.ToString("yyyy-MM-dd")</li>
+    <li><strong>Dates:</strong> @Model.StartDate.ToShortDateString() – @Model.EndDate.ToShortDateString()</li>
 </ul>
 
-<a class="btn btn-primary" href="@Url.Action("Create","Bookings", new { tourId = Model.Id })">Book this tour</a>
+@if (avg.HasValue)
+{
+    <p class="mb-3"><strong>Average rating:</strong> @Math.Round(avg.Value, 1)/5</p>
+}
+
+<div class="d-flex gap-2 mb-4">
+    @* Book button (POST to Bookings/Create) *@
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("Create", "Bookings", FormMethod.Post, new { @class = "d-inline" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("id", Model.Id) @* parameter name must be 'id' for BookingsController.Create(int id) *@
+            <button type="submit" class="btn btn-primary">Book this tour</button>
+        }
+    }
+    else
+    {
+        <a class="btn btn-primary"
+           href="@Url.Action("Login", "Account", new { ReturnUrl = Url.Action("Details","Tours", new { id = Model.Id }) })">
+            Log in to book
+        </a>
+    }
+
+    @* Leave review button when eligible (set in controller) *@
+    @if (Request.IsAuthenticated && reviewBookingId.HasValue)
+    {
+        <a class="btn btn-outline-primary"
+           href="@Url.Action("Create", "Reviews", new { id = reviewBookingId.Value })">
+            Leave a review
+        </a>
+    }
+</div>
+
+<hr />
+
+<h4 class="mb-3">Reviews</h4>
+@if (!reviews.Any())
+{
+    <p class="text-muted">No reviews yet.</p>
+}
+else
+{
+    <ul class="list-unstyled">
+        @foreach (var r in reviews.OrderByDescending(x => x.CreatedAt))
+        {
+            <li class="mb-3">
+                <div class="fw-semibold">@r.Rating/5</div>
+                <div>@r.Comment</div>
+                <small class="text-muted">@r.CreatedAt.ToShortDateString()</small>
+            </li>
+        }
+    </ul>
+}

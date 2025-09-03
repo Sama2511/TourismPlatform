@@ -36,7 +36,13 @@ namespace TourismWebSite.Models
             return new ApplicationDbContext();
         }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         public DbSet<Tours> Tours { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -1,0 +1,29 @@
+﻿@model TourismWebSite.Models.Review
+@{
+    ViewBag.Title = "Leave a Review";
+}
+
+<h2 class="mb-3">Leave a review for @ViewBag.TourName</h2>
+
+@using (Html.BeginForm("Create", "Reviews", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.BookingId)
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Rating, new { @class = "form-label" })
+        @Html.DropDownListFor(m => m.Rating,
+            new SelectList(new[] { 1, 2, 3, 4, 5 }),
+            new { @class = "form-select" })
+        @Html.ValidationMessageFor(m => m.Rating, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Comment, new { @class = "form-label" })
+        @Html.TextAreaFor(m => m.Comment, new { @class = "form-control", rows = 4, placeholder = "Share your experience..." })
+        @Html.ValidationMessageFor(m => m.Comment, "", new { @class = "text-danger" })
+    </div>
+
+    <button class="btn btn-primary">Submit Review</button>
+}
