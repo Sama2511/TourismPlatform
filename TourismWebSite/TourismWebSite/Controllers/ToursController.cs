@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;   // <-- needed for Include
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,24 +11,24 @@ namespace TourismWebSite.Controllers
 {
     public class ToursController : Controller
     {
-        // GET: Tours
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        // GET: Tours
         public ActionResult Index()
         {
-            var tours = db.Tours.ToList(); 
-
+            var tours = db.Tours.ToList();
             return View(tours);
         }
-        // ... rest of the file ...
 
         public ActionResult Details(int id)
         {
             var tour = db.Tours.Find(id);
             if (tour == null) return HttpNotFound();
 
+            // Include both Booking and the linked User
             var reviews = db.Reviews
-                            .Include("Booking") 
+                            .Include(r => r.Booking)
+                            .Include(r => r.User)        // <-- this ensures we can access r.User.FullName
                             .Where(r => r.Booking.TourId == id)
                             .ToList();
 
@@ -51,7 +52,5 @@ namespace TourismWebSite.Controllers
 
             return View(tour);
         }
-
     }
-
 }

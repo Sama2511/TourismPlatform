@@ -1,29 +1,48 @@
-﻿@model TourismWebSite.Models.Review
+﻿@model IEnumerable<TourismWebSite.Models.Review>
+
 @{
-    ViewBag.Title = "Leave a Review";
+    ViewBag.Title = "Reviews";
 }
 
-<h2 class="mb-3">Leave a review for @ViewBag.TourName</h2>
+<h2 class="mb-3">All Reviews</h2>
 
-@using (Html.BeginForm("Create", "Reviews", FormMethod.Post))
+@if (!Model.Any())
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(m => m.BookingId)
-
-    <div class="mb-3">
-        @Html.LabelFor(m => m.Rating, new { @class = "form-label" })
-        @Html.DropDownListFor(m => m.Rating,
-            new SelectList(new[] { 1, 2, 3, 4, 5 }),
-            new { @class = "form-select" })
-        @Html.ValidationMessageFor(m => m.Rating, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="mb-3">
-        @Html.LabelFor(m => m.Comment, new { @class = "form-label" })
-        @Html.TextAreaFor(m => m.Comment, new { @class = "form-control", rows = 4, placeholder = "Share your experience..." })
-        @Html.ValidationMessageFor(m => m.Comment, "", new { @class = "text-danger" })
-    </div>
-
-    <button class="btn btn-primary">Submit Review</button>
+    <p>No reviews have been submitted yet.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tour</th>
+                <th>Rating</th>
+                <th>Comment</th>
+                <th>Created At</th>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model)
+            {
+                <tr>
+                    <td>@(r.Booking?.Tour?.Name ?? "N/A")</td>
+                    <td>
+                        @for (int i = 0; i < r.Rating; i++)
+                        {
+                            <span class="text-warning">&#9733;</span> @* star character *@
+                        }
+                        @for (int i = r.Rating; i < 5; i++)
+                        {
+                            <span class="text-muted">&#9733;</span>
+                        }
+                    </td>
+                    <td>@r.Comment</td>
+                    <td>@r.CreatedAt.ToString("g")</td>
+                    <td>@r.User?.FullName</td>
+                    <td>@r.CreatedAt.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }

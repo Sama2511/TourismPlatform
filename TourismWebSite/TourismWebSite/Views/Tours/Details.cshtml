@@ -69,6 +69,7 @@ else
                 <div class="fw-semibold">@r.Rating/5</div>
                 <div>@r.Comment</div>
                 <small class="text-muted">@r.CreatedAt.ToShortDateString()</small>
+                <div class="text-muted">By @r.User.FullName</div>
             </li>
         }
     </ul>
