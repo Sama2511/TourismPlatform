@@ -193,6 +193,10 @@
     <Compile Include="Migrations\202509040332546_RemoveUserIdFromReview.Designer.cs">
       <DependentUpon>202509040332546_RemoveUserIdFromReview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202509061439548_AddTourImage.cs" />
+    <Compile Include="Migrations\202509061439548_AddTourImage.Designer.cs">
+      <DependentUpon>202509061439548_AddTourImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Booking.cs" />
@@ -336,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202509040332546_RemoveUserIdFromReview.resx">
       <DependentUpon>202509040332546_RemoveUserIdFromReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509061439548_AddTourImage.resx">
+      <DependentUpon>202509061439548_AddTourImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

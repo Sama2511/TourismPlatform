@@ -2,45 +2,26 @@
 @using System.Security.Claims
 
 @{
-    // Prefer the FullName claim we added; fall back to username/email
+    // Prefer FullName claim; fall back to username/email
     var fullName = (User as ClaimsPrincipal)?.FindFirst("FullName")?.Value
                    ?? User.Identity.GetUserName();
 }
 
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-flex ms-auto" }))
+    @* Right-aligned, compact, outline button for logoff *@
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-flex align-items-center gap-2" }))
     {
         @Html.AntiForgeryToken()
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                @Html.ActionLink("Hello " + fullName + "!", "Index", "Manage", null,
-                    new { title = "Manage", @class = "nav-link" })
-            </li>
-            <li class="nav-item">
-                <button type="submit" class="nav-link btn btn-link p-0">Log off</button>
-            </li>
-        </ul>
+        <span class="text-muted small d-none d-md-inline">Hello, @fullName!</span>
+        <button type="submit" class="btn btn-sm btn-outline-secondary">Log off</button>
     }
 }
 else
 {
-    <ul class="navbar-nav ms-auto gap-2">
-        <li class="btn btn-primary">
-            @Html.ActionLink("Sign Up", "Register", "Account", null,
-                new { id = "registerLink", @class = "nav-link" })
-        </li>
-        <li class="btn btn-outline-secondary me-2">
-            @Html.ActionLink("Log in", "Login", "Account", null,
-                new { id = "loginLink", @class = "nav-link" })
-        </li>
-    </ul>
+    @* Right-aligned auth buttons: outline Login + primary Sign Up *@
+    <div class="d-flex align-items-center gap-2">
+        <a id="loginLink" class="btn btn-sm btn-outline-secondary" href="@Url.Action("Login","Account")">Login</a>
+        <a id="registerLink" class="btn btn-sm btn-primary" href="@Url.Action("Register","Account")">Sign Up</a>
+    </div>
 }
-
-
-
-
-  
-   
- 
-  

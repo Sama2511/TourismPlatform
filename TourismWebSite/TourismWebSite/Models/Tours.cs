@@ -26,5 +26,7 @@ using System.Web;
         [Display(Name = "End date")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

@@ -223,3 +223,4 @@ C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismW
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.AddReviews.resources
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.AddUserToReviews.resources
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.RemoveUserIdFromReview.resources
+C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.AddTourImage.resources

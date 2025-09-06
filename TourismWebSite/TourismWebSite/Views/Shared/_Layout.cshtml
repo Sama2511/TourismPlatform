@@ -8,48 +8,84 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    @{
+        var rd = ViewContext.RouteData;
+        var currentController = (rd.Values["controller"] as string ?? "").ToLower();
+        var currentAction = (rd.Values["action"] as string ?? "").ToLower();
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light py-4 bg-light border-bottom shadow-sm">
+        Func<string, string, bool> isActive = (controller, action) =>
+        {
+            bool controllerMatch = string.Equals(currentController, controller.ToLower(), StringComparison.OrdinalIgnoreCase);
+            bool actionMatch = action == null || string.Equals(currentAction, action.ToLower(), StringComparison.OrdinalIgnoreCase);
+            return controllerMatch && actionMatch;
+        };
+    }
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm border-bottom py-3">
         <div class="container-fluid">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="@Url.Action("Index","Home")">
+                <i class="bi bi-geo-alt-fill text-primary me-2"></i> Voyage
+            </a>
 
-            @Html.ActionLink("Voyage", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fw-semibold" })
-
-            <button class="navbar-toggler" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#nav_lc"
-                    aria-controls="nav_lc" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- Burger -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="nav_lc">
-                <ul class="navbar-nav my-3 my-lg-0 ms-lg-3 me-auto">
-                    <li class="nav-item me-4">
-                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-auto gap-2 my-3 my-lg-0">
+                    <li class="nav-item">
+                        <a class="btn btn-sm @(isActive("Home","Index") ? "btn-primary" : "btn-outline-primary")"
+                           href="@Url.Action("Index","Home")">
+                            <i class="bi bi-house-door me-1"></i> Home
+                        </a>
                     </li>
-                    <li class="nav-item me-4">
-                        @Html.ActionLink("Tours", "Index", "Tours", null, new { @class = "nav-link" })
+
+                    <li class="nav-item">
+                        <a class="btn btn-sm @(isActive("Tours", null) ? "btn-primary" : "btn-outline-primary")"
+                           href="@Url.Action("Index","Tours")">
+                            <i class="bi bi-map me-1"></i> Tours
+                        </a>
                     </li>
 
                     @if (Request.IsAuthenticated)
                     {
-                        <li class="nav-item me-4">
-                            @Html.ActionLink("Bookings", "Index", "Bookings", null, new { @class = "nav-link" })
+                        <li class="nav-item">
+                            <a class="btn btn-sm @(isActive("Bookings", null) ? "btn-primary" : "btn-outline-primary")"
+                               href="@Url.Action("Index","Bookings")">
+                                <i class="bi bi-calendar-event me-1"></i> Bookings
+                            </a>
                         </li>
                     }
 
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <li class="nav-item me-4">
-                            @Html.ActionLink("Packages", "Index", "Packages", null, new { @class = "nav-link" })
+                        <li class="nav-item">
+                            <a class="btn btn-sm @(isActive("Packages", null) ? "btn-primary" : "btn-outline-primary")"
+                               href="@Url.Action("Index","Packages")">
+                                <i class="bi bi-box-seam me-1"></i> Packages
+                            </a>
                         </li>
-                        
                     }
+
+                    <li class="nav-item">
+                        <a class="btn btn-sm @(isActive("Reviews", null) ? "btn-primary" : "btn-outline-primary")"
+                           href="@Url.Action("Index","Reviews")">
+                            <i class="bi bi-chat-dots me-1"></i> Reviews
+                        </a>
+                    </li>
                 </ul>
 
-                @Html.Partial("_LoginPartial")
+                <div class="d-flex ms-lg-3 align-items-center">
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
         </div>
     </nav>
+
+
 
     <div class="container body-content">
         @RenderBody()

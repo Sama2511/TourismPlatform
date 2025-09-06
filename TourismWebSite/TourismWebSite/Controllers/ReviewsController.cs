@@ -8,7 +8,7 @@ using TourismWebSite.Models;
 
 namespace TourismWebSite.Controllers
 {
-    [Authorize] // only logged-in users can review
+    // [Authorize] // only logged-in users can review
     public class ReviewsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -49,7 +49,7 @@ namespace TourismWebSite.Controllers
 
 
         // Reviews Index (optional – e.g. admin-only)
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var reviews = db.Reviews.Include(r => r.Booking.Tour).ToList();
