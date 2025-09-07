@@ -1,23 +1,44 @@
 ﻿@model IEnumerable<TourismWebSite.Models.Tours>
 @{
     ViewBag.Title = "Tours";
+    Func<string, string> ImgOrPlaceholder = (path) =>
+        Url.Content(string.IsNullOrWhiteSpace(path) ? "~/Content/placeholder-tour.png" : path);
 }
 
-<h2 class="mb-3">Available Tours</h2>
+<div class="py-3">
+    <h1 class="h3 mb-1">All Tours</h1>
+    <p class="text-muted mb-4">Discover amazing destinations and book your perfect getaway</p>
 
-<div class="row g-3">
+    <form class="row gy-2 gx-2 align-items-center mb-3" method="get" action="@Url.Action("Index")">
+        <div class="col-12 col-md">
+            <div class="input-group">
+                <span class="input-group-text">🔎</span>
+                <input name="q"
+                       value="@Request["q"]"
+                       class="form-control"
+                       placeholder="Search by name or destination…" />
+            </div>
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-outline-secondary" href="@Url.Action("Index","Tours")">Clear</a>
+        </div>
+    </form>
+
+</div>
+
+<div class="row g-4">
     @foreach (var t in Model)
     {
         <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card h-100">
+            <div class="card h-100 shadow-sm">
+                <img class="card-img-top" src="@ImgOrPlaceholder(t.ImageUrl)" alt="@t.Name" style="height:200px; object-fit:cover;">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title mb-1">@t.Name</h5>
 
                     <div class="text-muted small mb-2">
-                        @t.DurationDays day(s) • @t.Destination
+                        @t.Destination • @t.DurationDays day(s)
                     </div>
 
-                    @* optional: trim long text for uniform cards *@
                     <p class="mb-2 flex-grow-0">
                         @((t.Description ?? "").Length > 120 ? (t.Description.Substring(0, 120) + "…") : t.Description)
                     </p>
@@ -34,7 +55,7 @@
                             using (Html.BeginForm("Create", "Bookings", FormMethod.Post, new { @class = "d-inline" }))
                             {
                                 @Html.AntiForgeryToken()
-                                @Html.Hidden("id", t.Id) @* TourId *@
+                                @Html.Hidden("id", t.Id) 
                                 <button type="submit" class="btn btn-primary">Book</button>
                             }
                         }
@@ -46,8 +67,7 @@
                             </a>
                         }
 
-                        <a class="btn btn-outline-primary"
-                           href="@Url.Action("Details","Tours", new { id = t.Id })">
+                        <a class="btn btn-outline-primary" href="@Url.Action("Details","Tours", new { id = t.Id })">
                             Details
                         </a>
                     </div>

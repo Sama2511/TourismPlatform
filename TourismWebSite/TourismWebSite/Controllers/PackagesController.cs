@@ -17,10 +17,26 @@ namespace TourismWebSite.Controllers
         // GET: Packages
         public ActionResult Index()
         {
-            return View(db.Tours.ToList());
+            var tours = db.Tours.ToList();
+
+            var counts = db.Bookings
+                           .GroupBy(b => b.TourId)
+                           .ToDictionary(g => g.Key, g => g.Count());
+
+            ViewBag.BookingCounts = counts;
+
+            ViewBag.TotalBookings = counts.Values.Sum();
+
+            var endedTourIds = tours.Where(t => t.EndDate <= DateTime.Today).Select(t => t.Id).ToList();
+            ViewBag.TotalRevenue = db.Bookings
+                                     .Where(b => endedTourIds.Contains(b.TourId))
+                                     .Select(b => b.Tour.Price)
+                                     .DefaultIfEmpty(0)
+                                     .Sum();
+
+            return View(tours);
         }
 
-        // GET: Packages/Create
         public ActionResult Create()
         {
             return View();
@@ -33,7 +49,6 @@ namespace TourismWebSite.Controllers
         {
             if (!ModelState.IsValid) return View(tours);
 
-            // handle upload
             if (imageFile != null && imageFile.ContentLength > 0)
             {
                 var okExt = new[] { ".jpg", ".jpeg", ".png", ".gif" };
@@ -59,7 +74,6 @@ namespace TourismWebSite.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Packages/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,7 +98,6 @@ namespace TourismWebSite.Controllers
             return View(tours);
         }
 
-        // POST: Packages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -114,7 +127,6 @@ namespace TourismWebSite.Controllers
             var existing = db.Tours.Find(tour.Id);
             if (existing == null) return HttpNotFound();
 
-            // update scalar fields
             existing.Name = tour.Name;
             existing.Description = tour.Description;
             existing.Price = tour.Price;
@@ -123,7 +135,6 @@ namespace TourismWebSite.Controllers
             existing.StartDate = tour.StartDate;
             existing.EndDate = tour.EndDate;
 
-            // optional: replace image
             if (imageFile != null && imageFile.ContentLength > 0)
             {
                 var okExt = new[] { ".jpg", ".jpeg", ".png", ".gif" };
@@ -141,7 +152,6 @@ namespace TourismWebSite.Controllers
                 var fullPath = Path.Combine(folder, fileName);
                 imageFile.SaveAs(fullPath);
 
-                // delete old image if present
                 if (!string.IsNullOrEmpty(existing.ImageUrl))
                 {
                     var oldPath = Server.MapPath(existing.ImageUrl);
@@ -156,6 +166,5 @@ namespace TourismWebSite.Controllers
             return RedirectToAction("Index");
         }
 
-        // (rest of your controller unchanged: Details/Delete/Dispose...)
     }
 }

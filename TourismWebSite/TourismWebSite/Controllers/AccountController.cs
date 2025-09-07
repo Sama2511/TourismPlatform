@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity.EntityFramework;   // roles
+using Microsoft.AspNet.Identity.EntityFramework;   
 using Microsoft.Owin.Security;
 using TourismWebSite.Models;
 
@@ -237,7 +237,6 @@ namespace TourismWebSite.Controllers
             }
         }
 
-        // ---------- CHANGED: set FullName for external users too ----------
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -250,7 +249,6 @@ namespace TourismWebSite.Controllers
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null) return View("ExternalLoginFailure");
 
-                // Try to grab a name from the provider if the form doesn't include it
                 var nameFromProvider = info.ExternalIdentity?.FindFirst(ClaimTypes.Name)?.Value;
 
                 var user = new ApplicationUser
@@ -259,7 +257,7 @@ namespace TourismWebSite.Controllers
                     Email = model.Email,
                     FullName = (model.GetType().GetProperty("FullName") != null)
                                ? (string)model.GetType().GetProperty("FullName").GetValue(model)
-                               : nameFromProvider   // fallback
+                               : nameFromProvider   
                 };
 
                 var result = await UserManager.CreateAsync(user);

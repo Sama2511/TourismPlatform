@@ -2,13 +2,76 @@
 @{
     ViewBag.Title = "My Bookings";
     var reviewed = ViewBag.ReviewedIds as HashSet<int> ?? new HashSet<int>();
+
+    int total = Model.Count();
+    int completed = Model.Count(b => b.Tour != null && b.Tour.EndDate <= DateTime.Today);
+    int upcoming = total - completed;
+
+    decimal totalSpent = Model
+        .Where(b => b.Tour != null && b.Tour.EndDate <= DateTime.Today)
+        .Sum(b => (decimal?)b.Tour.Price) ?? 0m;
 }
 
-<h2>My Bookings</h2>
+<h2 class="mb-3">My Bookings</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<!-- Stats row -->
+<div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="text-muted small">Total Bookings</div>
+                <div class="fs-4 fw-bold">@total</div>
+                <div class="text-muted small">All time bookings</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="text-muted small">Upcoming Tours</div>
+                <div class="fs-4 fw-bold">@upcoming</div>
+                <div class="text-muted small">Future/ongoing</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="text-muted small">Completed Tours</div>
+                <div class="fs-4 fw-bold">@completed</div>
+                <div class="text-muted small">Past experiences</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="text-muted small">Total Spent</div>
+                <div class="fs-4 fw-bold">@totalSpent.ToString("C")</div>
+                <div class="text-muted small">Completed only</div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @if (!Model.Any())
 {
-    <p>You haven’t booked any tours yet.</p>
+    <div class="card">
+        <div class="card-body text-center py-5">
+            <h5 class="mb-2">No bookings yet</h5>
+            <p class="text-muted mb-3">Start exploring our amazing tours and book your next adventure!</p>
+            <a class="btn btn-outline-primary" href="@Url.Action("Index","Tours")">Browse Tours</a>
+        </div>
+    </div>
 }
 else
 {
@@ -26,7 +89,8 @@ else
             @foreach (var b in Model)
             {
                 var t = b.Tour;
-                bool canReview = t != null && t.EndDate <= DateTime.Today && !reviewed.Contains(b.BookingId);
+                bool isCompleted = t != null && t.EndDate <= DateTime.Today;
+                bool hasReview = reviewed.Contains(b.BookingId);
 
                 <tr>
                     <td>@(t?.Name ?? "")</td>
@@ -37,30 +101,32 @@ else
                     </td>
                     <td class="text-end">@(t != null ? t.Price.ToString("C") : "")</td>
                     <td class="text-end">
-
-                        @* Remove button *@
-                        @using (Html.BeginForm("Delete", "Bookings", FormMethod.Post, new { @class = "d-inline" }))
+                        <!-- Show exactly one path: Cancel OR Review/Reviewed -->
+                        @if (!isCompleted)
                         {
-                            @Html.AntiForgeryToken()
-                            @Html.Hidden("id", b.BookingId)
-                            <button type="submit" class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Remove this booking?');">
-                                Remove
-                            </button>
+                            using (Html.BeginForm("Delete", "Bookings", FormMethod.Post, new { @class = "d-inline" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("id", b.BookingId)
+                                <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Cancel this booking?');">
+                                    Cancel
+                                </button>
+                            }
                         }
-
-                        @* Review button or badge *@
-                        @if (canReview)
+                        else
                         {
-                            <a class="btn btn-sm btn-success"
-                               href="@Url.Action("Create", "Reviews", new { bookingId = b.BookingId })">
-                                Add Review
-                            </a>
-
-                        }
-                        else if (reviewed.Contains(b.BookingId))
-                        {
-                            <span class="badge bg-success ms-1">Reviewed</span>
+                            if (!hasReview)
+                            {
+                                <a class="btn btn-sm btn-outline-success"
+                                   href="@Url.Action("Create", "Reviews", new { bookingId = b.BookingId })">
+                                    Leave Review
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Reviewed</span>
+                            }
                         }
                     </td>
                 </tr>

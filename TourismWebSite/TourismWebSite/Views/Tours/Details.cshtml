@@ -2,75 +2,114 @@
 @using TourismWebSite.Models
 @{
     ViewBag.Title = Model.Name;
-
-    // data passed from controller
     var reviews = ViewBag.Reviews as IEnumerable<Review> ?? Enumerable.Empty<Review>();
     double? avg = ViewBag.AvgRating as double?;
     int? reviewBookingId = ViewBag.ReviewBookingId as int?;
+
+    Func<string, string> ImgOrPlaceholder = (path) =>
+        Url.Content(string.IsNullOrWhiteSpace(path) ? "~/Content/placeholder-tour.png" : path);
+
+    Func<int, IHtmlString> Stars = rating =>
+    {
+        rating = Math.Max(0, Math.Min(5, rating));
+        var filled = new string('★', rating);
+        var empty = new string('☆', 5 - rating);
+        return new HtmlString($"<span class=\"text-warning\" style=\"letter-spacing:.1rem\">{filled}</span><span class=\"text-muted\">{empty}</span>");
+    };
 }
 
-<h1 class="h3 mb-2">@Model.Name</h1>
-<p class="text-muted mb-3">@Model.Destination • @Model.DurationDays day(s)</p>
+<div class="mb-4">
+    <div class="ratio ratio-16x9 mb-3">
+        <img src="@ImgOrPlaceholder(Model.ImageUrl)" alt="@Model.Name" style="object-fit:cover;" />
+    </div>
 
-<p class="mb-3">@Model.Description</p>
+    <div class="d-flex flex-column flex-lg-row gap-4">
+        <div class="flex-grow-1">
+            <h1 class="h3 mb-1">@Model.Name</h1>
+            <div class="text-muted mb-3">@Model.Destination • @Model.DurationDays day(s)</div>
 
-<ul class="list-unstyled border rounded p-3 mb-3">
-    <li><strong>Price:</strong> @Model.Price.ToString("C")</li>
-    <li><strong>Dates:</strong> @Model.StartDate.ToShortDateString() – @Model.EndDate.ToShortDateString()</li>
-</ul>
+            <p class="mb-3">@Model.Description</p>
 
-@if (avg.HasValue)
-{
-    <p class="mb-3"><strong>Average rating:</strong> @Math.Round(avg.Value, 1)/5</p>
-}
+            <ul class="list-unstyled border rounded p-3 mb-3">
+                <li class="mb-1"><strong>Price:</strong> @Model.Price.ToString("C")</li>
+                <li class="mb-1"><strong>Dates:</strong> @Model.StartDate.ToShortDateString() – @Model.EndDate.ToShortDateString()</li>
+            </ul>
 
-<div class="d-flex gap-2 mb-4">
-    @* Book button (POST to Bookings/Create) *@
-    @if (Request.IsAuthenticated)
-    {
-        using (Html.BeginForm("Create", "Bookings", FormMethod.Post, new { @class = "d-inline" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.Hidden("id", Model.Id) @* parameter name must be 'id' for BookingsController.Create(int id) *@
-            <button type="submit" class="btn btn-primary">Book this tour</button>
-        }
-    }
-    else
-    {
-        <a class="btn btn-primary"
-           href="@Url.Action("Login", "Account", new { ReturnUrl = Url.Action("Details","Tours", new { id = Model.Id }) })">
-            Log in to book
-        </a>
-    }
+            @if (avg.HasValue)
+            {
+                <p class="mb-3">
+                    <strong>Average rating:</strong>
+                    @Math.Round(avg.Value, 1)/5
+                </p>
+            }
 
-    @* Leave review button when eligible (set in controller) *@
-    @if (Request.IsAuthenticated && reviewBookingId.HasValue)
-    {
-        <a class="btn btn-outline-primary"
-           href="@Url.Action("Create", "Reviews", new { id = reviewBookingId.Value })">
-            Leave a review
-        </a>
-    }
+        <div class="d-flex gap-2 mb-4">
+           
+            @if (Request.IsAuthenticated && reviewBookingId.HasValue)
+            {
+                <a class="btn btn-outline-primary"
+                   href="@Url.Action("Create", "Reviews", new { id = reviewBookingId.Value })">
+                    Leave a review
+                </a>
+            }
+        </div>
+
+            <hr />
+
+            <h4 class="mb-3">Reviews</h4>
+            @if (!reviews.Any())
+            {
+                <p class="text-muted">No reviews yet.</p>
+            }
+            else
+            {
+                <ul class="list-unstyled">
+                    @foreach (var r in reviews.OrderByDescending(x => x.CreatedAt))
+                    {
+                        <li class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <div>@Stars(r.Rating)</div>
+                                <small class="text-muted">@r.CreatedAt.ToShortDateString()</small>
+                            </div>
+                            <div class="mt-1">@r.Comment</div>
+                            @* show reviewer *@
+                            @if (r.User != null)
+                            {
+                                <div class="text-muted small mt-1">By @r.User.FullName</div>
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+
+        <div class="flex-shrink-0" style="min-width: 280px;">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-baseline justify-content-between mb-2">
+                        <div class="h4 mb-0">@Model.Price.ToString("C")</div>
+                        <span class="badge text-bg-secondary">Available</span>
+                    </div>
+                    <p class="text-muted small">Per person • Free cancel up to 48h before departure</p>
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("Create", "Bookings", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id", Model.Id)
+                            <button class="btn btn-primary w-100" type="submit">Book This Tour</button>
+                        }
+                    }
+                    else
+                    {
+                        <a class="btn btn-primary w-100"
+                           href="@Url.Action("Login", "Account", new { ReturnUrl = Url.Action("Details","Tours", new { id = Model.Id }) })">
+                            Log in to book
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<hr />
-
-<h4 class="mb-3">Reviews</h4>
-@if (!reviews.Any())
-{
-    <p class="text-muted">No reviews yet.</p>
-}
-else
-{
-    <ul class="list-unstyled">
-        @foreach (var r in reviews.OrderByDescending(x => x.CreatedAt))
-        {
-            <li class="mb-3">
-                <div class="fw-semibold">@r.Rating/5</div>
-                <div>@r.Comment</div>
-                <small class="text-muted">@r.CreatedAt.ToShortDateString()</small>
-                <div class="text-muted">By @r.User.FullName</div>
-            </li>
-        }
-    </ul>
-}

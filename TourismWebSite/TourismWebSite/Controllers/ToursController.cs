@@ -14,10 +14,20 @@ namespace TourismWebSite.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tours
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index(string q = null)
         {
-            var tours = db.Tours.ToList();
-            return View(tours);
+            var tours = db.Tours.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(q))
+            {
+                var term = q.Trim().ToLower();
+                tours = tours.Where(t =>
+                    (t.Name ?? "").ToLower().Contains(term) ||
+                    (t.Destination ?? "").ToLower().Contains(term));
+            }
+
+            return View(tours.OrderBy(t => t.StartDate).ToList());
         }
 
         public ActionResult Details(int id)
@@ -25,10 +35,9 @@ namespace TourismWebSite.Controllers
             var tour = db.Tours.Find(id);
             if (tour == null) return HttpNotFound();
 
-            // Include both Booking and the linked User
             var reviews = db.Reviews
                             .Include(r => r.Booking)
-                            .Include(r => r.User)        // <-- this ensures we can access r.User.FullName
+                            .Include(r => r.User)       
                             .Where(r => r.Booking.TourId == id)
                             .ToList();
 
@@ -52,5 +61,6 @@ namespace TourismWebSite.Controllers
 
             return View(tour);
         }
+        
     }
 }

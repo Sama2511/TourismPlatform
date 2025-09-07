@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using System.Data.Entity;                 // Include
-using System.Collections.Generic;         // HashSet
+using System.Data.Entity;                
+using System.Collections.Generic;        
 using Microsoft.AspNet.Identity;
 using TourismWebSite.Models;
 
 namespace TourismWebSite.Controllers
 {
-    [Authorize] // must be logged in to book/see bookings
+    [Authorize] 
     public class BookingsController : Controller
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
 
-        // POST: /Bookings/Create/5  (5 = TourId)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(int id) // id = TourId
         {
             var userId = User.Identity.GetUserId();
 
-            // Ensure tour exists (and optionally is bookable)
             var tour = db.Tours.Find(id);
             if (tour == null)
             {
@@ -35,7 +33,6 @@ namespace TourismWebSite.Controllers
             //     return RedirectToAction("Index", "Tours");
             // }
 
-            // Prevent duplicate booking of same tour by same user
             bool already = db.Bookings.Any(b => b.UserId == userId && b.TourId == id);
             if (!already)
             {
@@ -76,26 +73,25 @@ namespace TourismWebSite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id) // id = BookingId (PK)
+        public ActionResult Delete(int id)
         {
             var userId = User.Identity.GetUserId();
-            var booking = db.Bookings.Include(b => b.Tour).FirstOrDefault(b => b.BookingId == id);
 
-            if (booking == null)
+            var booking = db.Bookings
+                            .Include(b => b.Tour)
+                            .FirstOrDefault(b => b.BookingId == id && b.UserId == userId);
+
+            if (booking == null) return HttpNotFound();
+
+            if (booking.Tour != null && booking.Tour.EndDate <= DateTime.Today)
             {
-                TempData["Error"] = "Booking not found.";
+                TempData["Error"] = "You can’t cancel a booking after the tour has finished.";
                 return RedirectToAction("Index");
-            }
-
-            // Security: only the owner can delete their booking
-            if (booking.UserId != userId)
-            {
-                return new HttpStatusCodeResult(403);
             }
 
             db.Bookings.Remove(booking);
             db.SaveChanges();
-            TempData["Success"] = "Booking removed.";
+            TempData["Message"] = "Booking cancelled.";
             return RedirectToAction("Index");
         }
 
