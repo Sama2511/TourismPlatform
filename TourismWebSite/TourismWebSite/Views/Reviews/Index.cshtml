@@ -1,48 +1,126 @@
 ﻿@model IEnumerable<TourismWebSite.Models.Review>
+@using System.Collections.Generic
 
 @{
-    ViewBag.Title = "Reviews";
+    ViewBag.Title = "Customer Reviews";
+
+    int total = ViewBag.TotalReviews ?? 0;
+    double avg = ViewBag.AverageRating ?? 0.0;
+    var dist = ViewBag.Distribution as IDictionary<int, int> ?? new Dictionary<int, int>();
+    var verified = ViewBag.VerifiedIds as HashSet<int> ?? new HashSet<int>();
+
+    Func<int, IHtmlString> Stars = rating =>
+    {
+        var filled = new string('★', rating);
+        var empty = new string('★', 5 - rating);
+        return new HtmlString(
+            $"<span class='text-warning'>{filled}</span><span class='text-muted'>{empty}</span>"
+        );
+    };
+
+    Func<string, string> Initials = name =>
+    {
+        if (string.IsNullOrWhiteSpace(name)) return "?";
+        var parts = name.Trim().Split(' ');
+        return (parts[0][0].ToString() + (parts.Length > 1 ? parts[1][0].ToString() : "")).ToUpper();
+    };
 }
 
-<h2 class="mb-3">All Reviews</h2>
+<div class="container py-4">
+    <div class="mb-3">
+        <h1 class="h3 mb-1">Customer Reviews</h1>
+        <p class="text-muted">See what our travelers are saying about their experiences</p>
+    </div>
 
-@if (!Model.Any())
-{
-    <p>No reviews have been submitted yet.</p>
-}
-else
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Tour</th>
-                <th>Rating</th>
-                <th>Comment</th>
-                <th>Created At</th>
-                <th>User</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var r in Model)
+    <div class="row g-4">
+        <div class="col-lg-3">
+            <div class="card position-sticky" style="top:1rem;">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Overall Rating</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        <div class="display-6 text-primary fw-bold">@avg.ToString("0.0")</div>
+                        <div class="fs-5">
+                            @Stars((int)System.Math.Round(avg))
+                        </div>
+                        <div class="text-muted small">Based on @total review@(total==1?"":"s")</div>
+                    </div>
+
+                    <hr />
+
+                    @for (int star = 5; star >= 1; star--)
+                    {
+                        var count = dist.ContainsKey(star) ? dist[star] : 0;
+                        var pct = total > 0 ? (int)System.Math.Round(count * 100.0 / total) : 0;
+
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="me-2 small" style="width:1.5rem;">@star</span>
+                            <span class="text-warning me-2">★</span>
+                            <div class="progress flex-grow-1" style="height:8px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width:@pct%"></div>
+                            </div>
+                            <span class="small text-muted ms-2" style="width:2.5rem;">@count</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            @if (!Model.Any())
             {
-                <tr>
-                    <td>@(r.Booking?.Tour?.Name ?? "N/A")</td>
-                    <td>
-                        @for (int i = 0; i < r.Rating; i++)
-                        {
-                            <span class="text-warning">&#9733;</span> @* star character *@
-                        }
-                        @for (int i = r.Rating; i < 5; i++)
-                        {
-                            <span class="text-muted">&#9733;</span>
-                        }
-                    </td>
-                    <td>@r.Comment</td>
-                    <td>@r.CreatedAt.ToString("g")</td>
-                    <td>@r.User.FullName</td>
-                    <td>@r.CreatedAt.ToString("yyyy-MM-dd")</td>
-                </tr>
+                <div class="alert alert-secondary mb-0">No reviews have been submitted yet.</div>
             }
-        </tbody>
-    </table>
-}
+            else
+            {
+                foreach (var r in Model)
+                {
+                    var name = r.User?.FullName ?? "Traveler";
+                    var initials = Initials(name);
+                    var tourName = r.Booking?.Tour?.Name ?? "Tour";
+                    var dest = r.Booking?.Tour?.Destination;
+
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
+                                     style="width:48px;height:48px;font-weight:600;">
+                                    @initials
+                                </div>
+
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <h6 class="mb-0">@name</h6>
+                                                @if (verified.Contains(r.Id))
+                                                {
+                                                    <span class="badge bg-secondary">Verified</span>
+                                                }
+                                            </div>
+                                            <div class="text-muted small">
+                                                @r.CreatedAt.ToString("yyyy-MM-dd")
+                                            </div>
+                                        </div>
+                                        <div class="fs-5">
+                                            @Stars(r.Rating)
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-light rounded p-2 mt-2 mb-2">
+                                        <span class="fw-semibold">@tourName</span>
+                                        @if (!string.IsNullOrWhiteSpace(dest))
+                                        {<span class="text-muted"> • @dest</span>}
+                                    </div>
+
+                                    <p class="mb-0 text-muted">@r.Comment</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

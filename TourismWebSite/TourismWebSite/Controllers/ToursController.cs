@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;   // <-- needed for Include
+using System.Data.Entity;  
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,7 +13,6 @@ namespace TourismWebSite.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Tours
         [HttpGet]
         public ActionResult Index(string q = null)
         {

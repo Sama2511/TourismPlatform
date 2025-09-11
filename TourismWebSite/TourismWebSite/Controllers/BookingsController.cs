@@ -8,7 +8,8 @@ using TourismWebSite.Models;
 
 namespace TourismWebSite.Controllers
 {
-    [Authorize] 
+    //[Authorize(Roles != "Admin")]
+
     public class BookingsController : Controller
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
@@ -26,12 +27,7 @@ namespace TourismWebSite.Controllers
                 return RedirectToAction("Index", "Tours");
             }
 
-            // Optional: block booking past-end-date
-            // if (tour.EndDate < DateTime.Today)
-            // {
-            //     TempData["Error"] = "This tour is no longer available.";
-            //     return RedirectToAction("Index", "Tours");
-            // }
+         
 
             bool already = db.Bookings.Any(b => b.UserId == userId && b.TourId == id);
             if (!already)

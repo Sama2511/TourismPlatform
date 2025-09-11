@@ -14,7 +14,6 @@ namespace TourismWebSite.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Packages
         public ActionResult Index()
         {
             var tours = db.Tours.ToList();
@@ -42,7 +41,6 @@ namespace TourismWebSite.Controllers
             return View();
         }
 
-        // POST: Packages/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Tours tours, HttpPostedFileBase imageFile)
@@ -117,7 +115,6 @@ namespace TourismWebSite.Controllers
            // base.Dispose(disposing);
            // }
 
-        // POST: Packages/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Tours tour, HttpPostedFileBase imageFile)
