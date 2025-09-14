@@ -202,6 +202,7 @@
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Tours.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -294,6 +295,7 @@
     <Content Include="Views\Reviews\Details.cshtml" />
     <Content Include="Views\Reviews\Edit.cshtml" />
     <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Tours\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,71 @@
+﻿@model TourismWebSite.Models.Payment
+@{
+    ViewBag.Title = "Payment";
+    Func<string, string> fmtDate = d => d;
+}
+
+<h2 class="mb-3">Payment</h2>
+
+<div class="row g-4">
+    <div class="col-12 col-lg-7">
+        @using (Html.BeginForm("Payment", "Tours", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.TourId)
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Card Details</h5>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.CardName, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.CardName, new { @class = "form-control", placeholder = "John Doe" })
+                        @Html.ValidationMessageFor(m => m.CardName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.CardNumber, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.CardNumber, new { @class = "form-control", placeholder = "1234 1234 1234 1234", maxlength = "16" })
+                        @Html.ValidationMessageFor(m => m.CardNumber, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            @Html.LabelFor(m => m.Expiry, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Expiry, new { @class = "form-control", placeholder = "MM/YY" })
+                            @Html.ValidationMessageFor(m => m.Expiry, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-6 mb-3">
+                            @Html.LabelFor(m => m.CVV, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.CVV, new { @class = "form-control", placeholder = "123", maxlength = "4" })
+                            @Html.ValidationMessageFor(m => m.CVV, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Pay @Model.Price.ToString("C") & Book
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+
+
+    <div class="col-12 col-lg-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">@Model.TourName</h5>
+                <div class="text-muted mb-2">@Model.Destination</div>
+                <ul class="list-unstyled small mb-3">
+                    <li><strong>Start:</strong> @Model.StartDate.ToShortDateString()</li>
+                    <li><strong>End:</strong> @Model.EndDate.ToShortDateString()</li>
+                </ul>
+                <div class="fs-5 fw-semibold">Total: @Model.Price.ToString("C")</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

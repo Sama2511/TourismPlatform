@@ -52,17 +52,17 @@
                     <div class="mt-auto d-flex gap-2">
                         @if (Request.IsAuthenticated)
                         {
-                            using (Html.BeginForm("Create", "Bookings", FormMethod.Post, new { @class = "d-inline" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                @Html.Hidden("id", t.Id) 
-                                <button type="submit" class="btn btn-primary">Book</button>
-                            }
+                            <!-- Go to payment for this tour -->
+                            <a class="btn btn-primary"
+                               href="@Url.Action("Payment", "Tours", new { id = t.Id })">
+                                Book
+                            </a>
                         }
                         else
                         {
+                            <!-- After login, come back to payment for THIS tour -->
                             <a class="btn btn-primary"
-                               href="@Url.Action("Login", "Account", new { ReturnUrl = Url.Action("Index","Tours") })">
+                               href="@Url.Action("Login", "Account", new { ReturnUrl = Url.Action("Payment","Tours", new { id = t.Id }) })">
                                 Log in to book
                             </a>
                         }
@@ -71,6 +71,7 @@
                             Details
                         </a>
                     </div>
+
                 </div>
             </div>
         </div>
