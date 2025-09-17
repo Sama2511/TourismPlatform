@@ -10,7 +10,8 @@ namespace TourismWebSite.Controllers
     public class ToursController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        public ToursController() : this(new ApplicationDbContext()) { }
+        public ToursController(ApplicationDbContext context) { db = context; }
         [HttpGet]
         public ActionResult Index(string q = null)
         {
@@ -57,9 +58,7 @@ namespace TourismWebSite.Controllers
             return View(tour);
         }
 
-        // =============== PAYMENT FLOW ===============
 
-        // Show payment page for a specific tour
         [Authorize]
         [HttpGet]
         public ActionResult Payment(int id)
@@ -67,7 +66,6 @@ namespace TourismWebSite.Controllers
             var tour = db.Tours.Find(id);
             if (tour == null) return HttpNotFound();
 
-            // if already booked, just send to bookings
             var userId = User.Identity.GetUserId();
             bool already = db.Bookings.Any(b => b.UserId == userId && b.TourId == id);
             if (already)

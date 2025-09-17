@@ -13,10 +13,16 @@ namespace TourismWebSite.Controllers
     public class BookingsController : Controller
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
+        public BookingsController() : this(new ApplicationDbContext()) { }
+
+        public BookingsController(ApplicationDbContext context)
+        {
+            db = context;
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id) // id = TourId
+        public ActionResult Create(int id) // id is TourId
         {
             var userId = User.Identity.GetUserId();
 
@@ -44,7 +50,6 @@ namespace TourismWebSite.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: /Bookings
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();

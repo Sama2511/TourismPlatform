@@ -11,6 +11,8 @@ namespace TourismWebSite.Controllers
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
 
+        public HomeController() : this(new ApplicationDbContext()) { }
+        public HomeController(ApplicationDbContext context) { db = context; }
         public ActionResult Index()
         {
             var featured = db.Tours

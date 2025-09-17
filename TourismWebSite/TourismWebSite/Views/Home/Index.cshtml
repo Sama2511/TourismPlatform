@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Home";
 
-    // Same helper you used on Tours page
+    
     Func<string, string> ImgOrPlaceholder = (path) =>
         Url.Content(string.IsNullOrWhiteSpace(path) ? "~/Content/placeholder-tour.png" : path);
 
@@ -12,7 +12,7 @@
     int years = ViewBag.YearsExperience ?? 0;
 }
 
-<!-- Hero -->
+
 <section class="position-relative d-flex align-items-center justify-content-center" style="height: 480px;">
     <div class="position-absolute top-0 start-0 w-100 h-100"
          style="background-image: url('https://images.unsplash.com/photo-1496950866446-3253e1470e8e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; "></div>
@@ -26,7 +26,7 @@
     </div>
 </section>
 
-<!-- Stats -->
+
 <section class="py-5 bg-light">
     <div class="container">
         <div class="row text-center g-4">
@@ -53,7 +53,6 @@
         </div>
     </div>
 </section>
-<!-- Your student table (kept as-is, centered) -->
 <section class="pb-5">
     <div class="container">
         <div class="table-responsive rounded-3 shadow-sm mx-auto" style="max-width: 720px;">
@@ -74,7 +73,7 @@
         </div>
     </div>
 </section>
-<!-- Featured Tours -->
+
 <section class="py-5">
     <div class="container">
         <div class="text-center mb-4">

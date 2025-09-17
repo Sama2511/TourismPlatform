@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNet.Identity;          // GetUserId()
+﻿using Microsoft.AspNet.Identity;          
 using System;
-using System.Collections.Generic;         // HashSet<>, IDictionary<>
-using System.Data.Entity;                 // Include()
+using System.Collections.Generic;      
+using System.Data.Entity;                
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -12,14 +12,14 @@ namespace TourismWebSite.Controllers
     public class ReviewsController : Controller
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
+        public ReviewsController() : this(new ApplicationDbContext()) { }
+        public ReviewsController(ApplicationDbContext context) { db = context; }
 
-        // ---------- CREATE (GET) ----------
         [Authorize]
         public ActionResult Create(int bookingId)
         {
             var userId = User.Identity.GetUserId();
 
-            // Must be this user's booking
             var booking = db.Bookings
                             .Include(b => b.Tour)
                             .FirstOrDefault(b => b.BookingId == bookingId && b.UserId == userId);
@@ -27,14 +27,12 @@ namespace TourismWebSite.Controllers
             if (booking == null)
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
 
-            // Block duplicate review
             if (db.Reviews.Any(r => r.BookingId == bookingId))
             {
                 TempData["Info"] = "You already reviewed this booking.";
                 return RedirectToAction("Index", "Bookings");
             }
 
-            // Optional: only after tour ends
             if (booking.Tour != null && booking.Tour.EndDate > DateTime.Today)
             {
                 TempData["Info"] = "You can review this tour after it ends.";
@@ -46,7 +44,6 @@ namespace TourismWebSite.Controllers
             return View();
         }
 
-        // ---------- CREATE (POST) ----------
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
@@ -54,7 +51,6 @@ namespace TourismWebSite.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            // Server-side: booking must belong to user
             var booking = db.Bookings
                             .Include(b => b.Tour)
                             .FirstOrDefault(b => b.BookingId == review.BookingId && b.UserId == userId);
@@ -62,7 +58,6 @@ namespace TourismWebSite.Controllers
             if (booking == null)
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
 
-            // Block duplicate
             if (db.Reviews.Any(r => r.BookingId == review.BookingId))
             {
                 TempData["Info"] = "You already reviewed this booking.";
@@ -86,7 +81,6 @@ namespace TourismWebSite.Controllers
             return RedirectToAction("Index", "Bookings");
         }
 
-        // ---------- INDEX (PUBLIC) ----------
         [AllowAnonymous]
         public ActionResult Index()
         {
@@ -99,12 +93,10 @@ namespace TourismWebSite.Controllers
             int total = reviews.Count;
             double avg = total > 0 ? reviews.Average(r => r.Rating) : 0.0;
 
-            // distribution 1..5
             var distribution = Enumerable.Range(1, 5)
                                          .ToDictionary(star => star,
                                                        star => reviews.Count(r => r.Rating == star));
 
-            // mark "verified" when review.UserId == booking.UserId
             var verifiedIds = new HashSet<int>(
                 reviews.Where(r => r.Booking != null && r.UserId == r.Booking.UserId)
                        .Select(r => r.Id)
@@ -112,8 +104,8 @@ namespace TourismWebSite.Controllers
 
             ViewBag.TotalReviews = total;
             ViewBag.AverageRating = avg;
-            ViewBag.Distribution = distribution; // IDictionary<int,int>
-            ViewBag.VerifiedIds = verifiedIds;  // HashSet<int>
+            ViewBag.Distribution = distribution; 
+            ViewBag.VerifiedIds = verifiedIds;  
 
             return View(reviews);
         }

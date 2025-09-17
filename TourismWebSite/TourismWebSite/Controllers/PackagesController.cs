@@ -13,7 +13,13 @@ namespace TourismWebSite.Controllers
     public class PackagesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        
+        public PackagesController() : this(new ApplicationDbContext()) { }
 
+        public PackagesController(ApplicationDbContext context)
+        {
+            db = context;
+        }
         public ActionResult Index()
         {
             var tours = db.Tours.ToList();

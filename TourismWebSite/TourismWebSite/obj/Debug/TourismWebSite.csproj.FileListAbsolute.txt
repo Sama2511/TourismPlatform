@@ -177,6 +177,7 @@ C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismW
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\Microsoft.VisualStudio.TestTools.UITest.Extension.dll
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\Newtonsoft.Json.dll
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\Owin.dll
@@ -188,6 +189,8 @@ C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismW
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\System.Web.WebPages.dll
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\System.Web.WebPages.Razor.dll
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\WebGrease.dll
+C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\Microsoft.VisualStudio.Interop.dll
+C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime.dll
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\Antlr3.Runtime.pdb
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\EntityFramework.xml
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\EntityFramework.SqlServer.xml
@@ -213,14 +216,14 @@ C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismW
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\System.Web.WebPages.Deployment.xml
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\bin\System.Web.WebPages.Razor.xml
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.csproj.AssemblyReference.cache
-C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.csproj.CoreCompileInputs.cache
-C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismW.5FE2CF2D.Up2Date
-C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.dll
-C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.pdb
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.InitAll.resources
-C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.csproj.GenerateResource.cache
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.AddBookingsTable.resources
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.AddReviews.resources
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.AddUserToReviews.resources
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.RemoveUserIdFromReview.resources
 C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.Migrations.AddTourImage.resources
+C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.csproj.GenerateResource.cache
+C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.csproj.CoreCompileInputs.cache
+C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismW.5FE2CF2D.Up2Date
+C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.dll
+C:\Users\hasso\OneDrive\Documents\GitHub\TourismPlatform\TourismWebSite\TourismWebSite\obj\Debug\TourismWebSite.pdb
