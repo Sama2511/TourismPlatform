@@ -12,7 +12,7 @@ namespace TourismWebSite.Tests.Controllers
     public class ToursControllerTests
     {
         [TestMethod]
-        public void Payment_Post_CreatesBooking_And_Redirects()
+        public void MakePayment()
         {
             var db = new TestApplicationDbContext();
             ((InMemoryDbSet<Tours>)db.Tours).Add(new Tours

@@ -11,7 +11,7 @@ namespace TourismWebSite.Tests.Controllers
     public class BookingsControllerTests
     {
         [TestMethod]
-        public void Create_AddsBooking_And_Redirects()
+        public void AddBooking()
         {
             var db = new TestApplicationDbContext();
             ((InMemoryDbSet<Tours>)db.Tours).Add(new Tours { Id = 1, Name = "Blue Mountains" });

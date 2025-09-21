@@ -11,7 +11,7 @@ namespace TourismWebSite.Tests.Controllers
     public class PackagesControllerTests
     {
         [TestMethod]
-        public void DeleteConfirmed_RemovesTour_And_Redirects()
+        public void RemoveTour()
         {
             var db = new TestApplicationDbContext();
             ((InMemoryDbSet<Tours>)db.Tours).Add(new Tours { Id = 9, Name = "Past Tour", Price = 100m });

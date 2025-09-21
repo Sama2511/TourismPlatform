@@ -12,7 +12,7 @@ namespace TourismWebSite.Tests.Controllers
     public class ReviewsControllerTests
     {
         [TestMethod]
-        public void Create_Post_SavesReview_And_Redirects()
+        public void CreateReview()
         {
             var db = new TestApplicationDbContext();
             var tour = new Tours { Id = 3, Name = "Harbour", EndDate = DateTime.Today.AddDays(-1) };
