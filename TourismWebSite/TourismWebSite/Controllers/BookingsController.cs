@@ -8,7 +8,6 @@ using TourismWebSite.Models;
 
 namespace TourismWebSite.Controllers
 {
-    //[Authorize(Roles != "Admin")]
 
     public class BookingsController : Controller
     {
@@ -22,7 +21,7 @@ namespace TourismWebSite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id) // id is TourId
+        public ActionResult Create(int id)
         {
             var userId = User.Identity.GetUserId();
 
